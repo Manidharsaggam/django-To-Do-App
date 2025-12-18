@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Django To-Do Application</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<div class="container">
+    <h2>To-Do List</h2>
+
+    <!-- TASK STATS -->
+    <div class="task-stats">
+        <span class="badge">
+            {{ completed_tasks }} / {{ total_tasks }} Completed
+        </span>
+        <div class="progress">
+            <div class="progress-bar" style="width: {{ progress_percent }}%;"></div>
+        </div>
+    </div>
+
+    <!-- FILTER BUTTONS -->
+    <div class="filters">
+        <a href="?" {% if not filter_type %}style="font-weight:bold;"{% endif %}>All</a> |
+        <a href="?filter=completed" {% if filter_type == 'completed' %}style="font-weight:bold;"{% endif %}>Completed</a> |
+        <a href="?filter=pending" {% if filter_type == 'pending' %}style="font-weight:bold;"{% endif %}>Pending</a>
+    </div>
+
+    <!-- ADD TASK -->
+    <form method="POST" class="add-form">
+        {% csrf_token %}
+        <input type="hidden" name="add_task">
+        <input type="text" name="title" placeholder="Add new task" required autofocus>
+        <button type="submit">Add</button>
+    </form>
+
+    <ul>
+        {% for task in tasks %}
+        <li>
+
+            {% if edit_id == task.id|stringformat:"s" %}
+                <!-- EDIT MODE -->
+                <form method="POST" class="edit-form">
+                    {% csrf_token %}
+                    <input type="hidden" name="update_task">
+                    <input type="hidden" name="task_id" value="{{ task.id }}">
+                    <input type="text" name="title" value="{{ task.title }}" autofocus>
+                    <button type="submit">Update</button>
+                    <a href="{% url 'task_list' %}">Cancel</a>
+                </form>
+            {% else %}
+                <!-- NORMAL VIEW -->
+                <div style="display:flex; align-items:center; gap:10px;">
+                    <form method="POST">
+                        {% csrf_token %}
+                        <input type="hidden" name="toggle_done">
+                        <input type="hidden" name="task_id" value="{{ task.id }}">
+                        <input type="checkbox"
+                               name="completed"
+                               onchange="this.form.submit()"
+                               {% if task.completed %}checked{% endif %}>
+                    </form>
+
+                    <span class="{% if task.completed %}done{% endif %}">
+                        {{ task.title }}
+                    </span>
+                </div>
+
+                <span>
+                    <a href="?edit={{ task.id }}">Edit</a>
+                    <a href="{% url 'delete_task' task.id %}" class="delete">Delete</a>
+                </span>
+            {% endif %}
+
+        </li>
+        {% empty %}
+            <li>No tasks added</li>
+        {% endfor %}
+    </ul>
+</div>
+
+</body>
+</html>
