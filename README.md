@@ -50,28 +50,29 @@ ToDoList/
 ```
 
 ## ⚙️ Setup Instructions
-1️⃣ Clone the repository
+
+## 1️⃣ Clone the repository
 git clone https://github.com/Manidharsaggam/django-todo-app.git
 cd django-todo-app
 
-2️⃣ Create and activate virtual environment (optional but recommended)
+## 2️⃣ Create and activate virtual environment (optional but recommended)
 python -m venv venv
 venv\Scripts\activate   # Windows
 
-3️⃣ Install Django
+## 3️⃣ Install Django
 pip install django
 
-4️⃣ Run migrations
+## 4️⃣ Run migrations
 python manage.py makemigrations
 python manage.py migrate
 
-5️⃣ Start the server
+## 5️⃣ Start the server
 python manage.py runserver
 
-6️⃣ Open in browser
+## 6️⃣ Open in browser
 http://127.0.0.1:8000/
-
-📸 Screenshots
+ 
+## 📸 Screenshots
 
 ### Home Page
 ![Home Page](https://raw.githubusercontent.com/Manidharsaggam/django-To-Do-App/main/screenshots/home.png)
@@ -82,7 +83,7 @@ http://127.0.0.1:8000/
 ### Completed Task
 ![Completed Task](https://raw.githubusercontent.com/Manidharsaggam/django-To-Do-App/main/screenshots/completed.png)
 
-**##🧠 What I Learned**
+## 🧠 What I Learned
 
 Implemented full CRUD operations using Django
 
@@ -96,7 +97,7 @@ Debugged real Django issues (404 errors, migrations, routing)
 
 Improved UI using pure HTML and CSS
 
-**##👨‍💻 Author**
+## 👨‍💻 Author
 
 Manidhar Saggam
 Python Developer (Fresher)
@@ -105,7 +106,7 @@ GitHub: https://github.com/Manidharsaggam
 
 LinkedIn: (add your LinkedIn profile link)
 
-**##📌 Future Improvements**
+## 📌 Future Improvements
 
 User authentication
 
