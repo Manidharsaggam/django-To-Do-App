@@ -48,29 +48,40 @@ ToDoList/
 │   └── completed.png
 └── README.md
 ```
+---
 
 ## ⚙️ Setup Instructions
 
 1️⃣ Clone the repository
+
 − git clone https://github.com/Manidharsaggam/django-todo-app.git
 − cd django-todo-app
 
 2️⃣ Create and activate virtual environment (optional but recommended)
+
 − python -m venv venv
+
 − venv\Scripts\activate   # Windows
 
 3️⃣ Install Django
+
 − pip install django
 
-− 4️⃣ Run migrations
-python manage.py makemigrations
-python manage.py migrate
+4️⃣ Run migrations
 
-− 5️⃣ Start the server
-python manage.py runserver
+− python manage.py makemigrations
+
+− python manage.py migrate
+
+5️⃣ Start the server
+
+− python manage.py runserver
 
 6️⃣ Open in browser
+
 − http://127.0.0.1:8000/
+
+---
  
 ## 📸 Screenshots
 
@@ -82,6 +93,8 @@ python manage.py runserver
 
 ### Completed Task
 ![Completed Task](https://raw.githubusercontent.com/Manidharsaggam/django-To-Do-App/main/screenshots/completed.png)
+
+---
 
 ## 🧠 What I Learned
 
@@ -97,6 +110,8 @@ python manage.py runserver
 
 ⇥ Improved UI using pure HTML and CSS
 
+---
+
 ## 👨‍💻 Author
 
 Manidhar Saggam
@@ -105,6 +120,8 @@ Python Developer (Fresher)
 ⇥ GitHub: https://github.com/Manidharsaggam
 
 ⇥ LinkedIn: https://www.linkedin.com/in/manidhar-saggam/
+
+---
 
 ## 📌 Future Improvements
 
@@ -115,5 +132,7 @@ Python Developer (Fresher)
 • Task priorities and deadlines
 
 • Deployment on cloud platform (Render / Railway)
+
+---
 
 ## ⭐ If you like this project, feel free to star the repository!
