@@ -120,20 +120,26 @@ Python Developer (Fresher)
 
 ⇥ GitHub: https://github.com/Manidharsaggam
 
-⇥ LinkedIn: https://www.linkedin.com/in/manidhar-saggam/
+LinkedIn: (add your LinkedIn profile link)
+
+📌 Future Improvements
+
+User authentication
+
+AJAX-based updates (no page reload)
+
+Task priorities and deadlines
+
+Deployment on cloud platform (Render / Railway)
+
+⭐ If you like this project, feel free to star the repository!
 
 ---
 
-## 📌 Future Improvements
+### 🔜 Final Step
+After updating README, run:
 
-• User authentication
-
-• AJAX-based updates (no page reload)
-
-• Task priorities and deadlines
-
-• Deployment on cloud platform (Render / Railway)
-
----
-
-## ⭐ If you like this project, feel free to star the repository!
+```bash
+git add README.md
+git commit -m "Updated README with setup, screenshots, and documentation"
+git push
