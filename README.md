@@ -121,3 +121,11 @@ Deployment on cloud platform (Render / Railway)
 ⭐ If you like this project, feel free to star the repository!
 
 ---
+
+### 🔜 Final Step
+After updating README, run:
+
+```bash
+git add README.md
+git commit -m "Updated README with setup, screenshots, and documentation"
+git push
