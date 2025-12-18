@@ -52,25 +52,25 @@ ToDoList/
 ## ⚙️ Setup Instructions
 
 1️⃣ Clone the repository
-git clone https://github.com/Manidharsaggam/django-todo-app.git
-cd django-todo-app
+− git clone https://github.com/Manidharsaggam/django-todo-app.git
+− cd django-todo-app
 
-## 2️⃣ Create and activate virtual environment (optional but recommended)
-python -m venv venv
-venv\Scripts\activate   # Windows
+2️⃣ Create and activate virtual environment (optional but recommended)
+− python -m venv venv
+− venv\Scripts\activate   # Windows
 
-## 3️⃣ Install Django
-pip install django
+3️⃣ Install Django
+− pip install django
 
-## 4️⃣ Run migrations
+− 4️⃣ Run migrations
 python manage.py makemigrations
 python manage.py migrate
 
-## 5️⃣ Start the server
+− 5️⃣ Start the server
 python manage.py runserver
 
-## 6️⃣ Open in browser
-http://127.0.0.1:8000/
+6️⃣ Open in browser
+− http://127.0.0.1:8000/
  
 ## 📸 Screenshots
 
@@ -85,35 +85,35 @@ http://127.0.0.1:8000/
 
 ## 🧠 What I Learned
 
-Implemented full CRUD operations using Django
+⇥ Implemented full CRUD operations using Django
 
-Handled multiple POST actions in a single view
+⇥ Handled multiple POST actions in a single view
 
-Managed checkbox state using BooleanField
+⇥ Managed checkbox state using BooleanField
 
-Implemented filtering using query parameters
+⇥ Implemented filtering using query parameters
 
-Debugged real Django issues (404 errors, migrations, routing)
+⇥ Debugged real Django issues (404 errors, migrations, routing)
 
-Improved UI using pure HTML and CSS
+⇥ Improved UI using pure HTML and CSS
 
 ## 👨‍💻 Author
 
 Manidhar Saggam
 Python Developer (Fresher)
 
-GitHub: https://github.com/Manidharsaggam
+⇥ GitHub: https://github.com/Manidharsaggam
 
-LinkedIn: (add your LinkedIn profile link)
+⇥ LinkedIn: https://www.linkedin.com/in/manidhar-saggam/
 
 ## 📌 Future Improvements
 
-User authentication
+• User authentication
 
-AJAX-based updates (no page reload)
+• AJAX-based updates (no page reload)
 
-Task priorities and deadlines
+• Task priorities and deadlines
 
-Deployment on cloud platform (Render / Railway)
+• Deployment on cloud platform (Render / Railway)
 
-⭐ If you like this project, feel free to star the repository!
+## ⭐ If you like this project, feel free to star the repository!
