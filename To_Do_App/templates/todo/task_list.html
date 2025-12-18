@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>To-Do List</title>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, sans-serif;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            min-height: 100vh;
+            padding: 40px;
+        }
+
+        .container {
+            width: 420px;
+            margin: auto;
+            background: #ffffff;
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+        }
+
+        h2 {
+            text-align: center;
+            margin-bottom: 10px;
+            color: #333;
+            letter-spacing: 1px;
+        }
+
+        /* TASK STATS */
+        .task-stats {
+            text-align: center;
+            margin-bottom: 15px;
+        }
+
+        .badge {
+            display: inline-block;
+            background: #667eea;
+            color: white;
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-size: 13px;
+            margin-bottom: 8px;
+        }
+
+        .progress {
+            width: 100%;
+            height: 6px;
+            background: #e0e0e0;
+            border-radius: 5px;
+            overflow: hidden;
+        }
+
+        .progress-bar {
+            height: 100%;
+            background: #27ae60;
+            transition: width 0.3s ease;
+        }
+
+        /* FILTERS */
+        .filters {
+            text-align: center;
+            margin-bottom: 15px;
+        }
+
+        .filters a {
+            text-decoration: none;
+            font-size: 13px;
+            margin: 0 5px;
+            color: #667eea;
+        }
+
+        /* ADD FORM */
+        .add-form {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        .add-form input {
+            flex: 1;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+        }
+
+        .add-form button {
+            padding: 10px 16px;
+            border: none;
+            background: #667eea;
+            color: #fff;
+            border-radius: 6px;
+            cursor: pointer;
+        }
+
+        ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        li {
+            background: #f6f7fb;
+            margin-bottom: 10px;
+            padding: 12px;
+            border-radius: 8px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .done {
+            text-decoration: line-through;
+            color: #999;
+        }
+
+        a {
+            text-decoration: none;
+            font-size: 13px;
+            margin-left: 10px;
+            color: #667eea;
+        }
+
+        .delete {
+            color: #e74c3c;
+        }
+
+        /* EDIT MODE */
+        .edit-form {
+            display: flex;
+            gap: 8px;
+            width: 100%;
+        }
+
+        .edit-form input {
+            flex: 1;
+            padding: 8px;
+            border-radius: 6px;
+            border: 1px solid #ccc;
+        }
+
+        .edit-form button {
+            background: #27ae60;
+            border: none;
+            color: white;
+            padding: 8px 12px;
+            border-radius: 6px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="container">
+    <h2>To-Do List</h2>
+
+    <!-- TASK STATS -->
+    <div class="task-stats">
+        <span class="badge">
+            {{ completed_tasks }} / {{ total_tasks }} Completed
+        </span>
+        <div class="progress">
+            <div class="progress-bar" style="width: {{ progress_percent }}%;"></div>
+        </div>
+    </div>
+
+    <!-- FILTER BUTTONS -->
+    <div class="filters">
+        <a href="?" {% if not filter_type %}style="font-weight:bold;"{% endif %}>All</a> |
+        <a href="?filter=completed" {% if filter_type == 'completed' %}style="font-weight:bold;"{% endif %}>Completed</a> |
+        <a href="?filter=pending" {% if filter_type == 'pending' %}style="font-weight:bold;"{% endif %}>Pending</a>
+    </div>
+
+    <!-- ADD TASK -->
+    <form method="POST" class="add-form">
+        {% csrf_token %}
+        <input type="hidden" name="add_task">
+        <input type="text" name="title" placeholder="Add new task" required autofocus>
+        <button type="submit">Add</button>
+    </form>
+
+    <ul>
+        {% for task in tasks %}
+        <li>
+
+            {% if edit_id == task.id|stringformat:"s" %}
+                <!-- EDIT MODE -->
+                <form method="POST" class="edit-form">
+                    {% csrf_token %}
+                    <input type="hidden" name="update_task">
+                    <input type="hidden" name="task_id" value="{{ task.id }}">
+                    <input type="text" name="title" value="{{ task.title }}" autofocus>
+                    <button type="submit">Update</button>
+                    <a href="{% url 'task_list' %}">Cancel</a>
+                </form>
+            {% else %}
+                <!-- NORMAL VIEW -->
+                <div style="display:flex; align-items:center; gap:10px;">
+                    <form method="POST">
+                        {% csrf_token %}
+                        <input type="hidden" name="toggle_done">
+                        <input type="hidden" name="task_id" value="{{ task.id }}">
+                        <input type="checkbox"
+                               name="completed"
+                               onchange="this.form.submit()"
+                               {% if task.completed %}checked{% endif %}>
+                    </form>
+
+                    <span class="{% if task.completed %}done{% endif %}">
+                        {{ task.title }}
+                    </span>
+                </div>
+
+                <span>
+                    <a href="?edit={{ task.id }}">Edit</a>
+                    <a href="{% url 'delete_task' task.id %}" class="delete">Delete</a>
+                </span>
+            {% endif %}
+
+        </li>
+        {% empty %}
+            <li>No tasks added</li>
+        {% endfor %}
+    </ul>
+</div>
+
+</body>
+</html>
